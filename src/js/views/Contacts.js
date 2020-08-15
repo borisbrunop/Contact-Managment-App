@@ -14,6 +14,8 @@ export const Contacts = () => {
 		actions.fetchContacts();
 	}, []);
 
+	console.log(store.contacts);
+
 	return (
 		<div className="container">
 			<div>
@@ -25,8 +27,13 @@ export const Contacts = () => {
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
 						{store.contacts.map(contact => {
-							console.log(contact);
-							<ContactCard contact={contact} onDelete={() => setState({ showModal: true })} />;
+							return (
+								<ContactCard
+									key={contact.id}
+									contact={contact}
+									onDelete={() => setState({ showModal: true })}
+								/>
+							);
 						})}
 					</ul>
 				</div>
