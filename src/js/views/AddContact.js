@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 function AddContact() {
 	const { store, actions } = useContext(Context);
@@ -14,7 +13,6 @@ function AddContact() {
 	const [editEmail, setEditEmail] = useState(store.editContact.email);
 	const [editPhone, setEditPhone] = useState(store.editContact.phone);
 	const [editAddress, setEditAddress] = useState(store.editContact.address);
-	//const history = useHistory();
 	const { param } = useParams();
 	console.log(param);
 
@@ -23,7 +21,7 @@ function AddContact() {
 			{param == "edit" ? (
 				<div className="container">
 					<div>
-						<h1 className="text-center mt-5">Add a new contact</h1>
+						<h1 className="text-center mt-5">Edit contact</h1>
 						<form>
 							<div className="form-group">
 								<label>Full Name</label>

@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import PlaceHolder from "../../img/128.png";
+import ContactImage from "../../img/small-contact.png";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
 
 export const ContactCard = props => {
-	// const [state, setState] = useState({
-	// 	//initialize state here
-	// });
-	// const history = useHistory();
 	const { store, actions } = useContext(Context);
 	return (
 		<>
@@ -18,7 +13,7 @@ export const ContactCard = props => {
 				<div className="row w-100">
 					<div className="col-12 col-sm-6 col-md-3 px-0">
 						<img
-							src={PlaceHolder}
+							src={ContactImage}
 							alt="Mike Anamendolla"
 							className="rounded-circle mx-auto d-block img-fluid"
 						/>

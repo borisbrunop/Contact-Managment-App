@@ -9,6 +9,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 		},
 		actions: {
 			fetchCreateContact: async (name, email, phone, adress) => {
+				let actions = getActions();
 				try {
 					let response = await fetch(`${baseUrl}`, {
 						method: "POST",
@@ -24,7 +25,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 						})
 					});
 					if (response.ok) {
-						contacts = await response.json();
+						await actions.fetchContacts();
 					} else {
 						console.log(`error: ${response.status} ${response.statusText}`);
 					}
