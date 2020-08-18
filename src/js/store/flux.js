@@ -4,8 +4,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 	return {
 		store: {
 			contacts: [],
-			id: 0,
-			editContact: {}
+			id: 0
 		},
 		actions: {
 			fetchCreateContact: async (name, email, phone, adress) => {
@@ -75,11 +74,11 @@ const getState = ({ getStore, setStore, getActions }) => {
 					console.log(error);
 				}
 			},
-			fetchEditContact: async (name, email, phone, adress) => {
+			fetchEditContact: async (name, email, phone, adress, id) => {
 				let store = getStore();
 				let actions = getActions();
 				try {
-					let response = await fetch(`${baseUrl}/${store.editContact.id}`, {
+					let response = await fetch(`${baseUrl}/${id}`, {
 						method: "PUT",
 						headers: {
 							"Content-Type": "application/JSON"
@@ -114,6 +113,9 @@ const getState = ({ getStore, setStore, getActions }) => {
 				setStore({
 					editContact: contact
 				});
+			},
+			editContactLocalStorage: contact => {
+				localStorage.setItem("contact", JSON.stringify(contact));
 			}
 		}
 	};

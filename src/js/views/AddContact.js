@@ -9,12 +9,14 @@ function AddContact() {
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
 	const [adress, setAdress] = useState("");
-	const [editName, setEditName] = useState(store.editContact.full_name);
-	const [editEmail, setEditEmail] = useState(store.editContact.email);
-	const [editPhone, setEditPhone] = useState(store.editContact.phone);
-	const [editAddress, setEditAddress] = useState(store.editContact.address);
 	const { param } = useParams();
-	console.log(param);
+
+	let localData = localStorage.getItem("contact");
+	localData = JSON.parse(localData);
+	const [editName, setEditName] = useState(localData.full_name);
+	const [editEmail, setEditEmail] = useState(localData.email);
+	const [editPhone, setEditPhone] = useState(localData.phone);
+	const [editAddress, setEditAddress] = useState(localData.address);
 
 	return (
 		<>
@@ -29,7 +31,7 @@ function AddContact() {
 									type="text"
 									className="form-control"
 									placeholder="Full Name"
-									defaultValue={editName}
+									defaultValue={localData.full_name}
 									onChange={e => setEditName(e.target.value)}
 								/>
 							</div>
@@ -37,7 +39,7 @@ function AddContact() {
 								<label>Email</label>
 								<input
 									type="email"
-									defaultValue={editEmail}
+									defaultValue={localData.email}
 									className="form-control"
 									placeholder="Enter email"
 									onChange={e => setEditEmail(e.target.value)}
@@ -47,7 +49,7 @@ function AddContact() {
 								<label>Phone</label>
 								<input
 									type="phone"
-									defaultValue={editPhone}
+									defaultValue={localData.phone}
 									className="form-control"
 									placeholder="Enter phone"
 									onChange={e => setEditPhone(e.target.value)}
@@ -57,7 +59,7 @@ function AddContact() {
 								<label>Address</label>
 								<input
 									type="text"
-									defaultValue={editAddress}
+									defaultValue={localData.address}
 									className="form-control"
 									placeholder="Enter address"
 									onChange={e => setEditAddress(e.target.value)}
@@ -65,7 +67,9 @@ function AddContact() {
 							</div>
 							<Link
 								to="/"
-								onClick={e => actions.fetchEditContact(editName, editEmail, editPhone, editAddress)}>
+								onClick={e =>
+									actions.fetchEditContact(editName, editEmail, editPhone, editAddress, localData.id)
+								}>
 								<button type="button" className="btn btn-primary form-control">
 									save
 								</button>
